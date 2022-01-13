@@ -20,35 +20,31 @@ def display_board():
 
 
 def handle_turn():
+    return
 
 
 def check_win():
+    return
 
 
 def check_rows():
-    
+    return
+
 
 def check_cols():
+    return
 
 
 def check_diagonal():
+    return
 
 
 def check_tie():
+    return
 
 
 def flip_player():    
+    return
 
 
 start_game()       
-
-# board
-# display board
-# play game
-# handle turn
-# check win
-    # check rows
-    # check columns
-    # check diagonals
-# check tie
-# flip player
