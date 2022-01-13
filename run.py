@@ -1,4 +1,4 @@
-board = ["X", "-", "-", 
+board = ["-", "-", "-", 
          "-", "-", "-",
          "-", "-", "-"]
 
@@ -23,25 +23,40 @@ def check_space(position):
         return False
 
 
-def insert_game_piece(game_piece,position):
+def insert_game_piece(game_piece, position):
+    """
+    If the space is free add the game piece
+    and check if any player has won.
+    If not return another input.
+    """
     
     if check_space(position):
         board[position] = game_piece
         display_board(board)
+
+        if check_win():
+            if game_piece == "X":
+                print("Player 1 wins!")
+                exit()
+            else:
+                print("Player 2 wins!")
+                exit()
     
     else:
         print("Can't insert there...")
-        position = input("Enter new position: ")
+        position = int(input("Enter new position (1-9): "))
         insert_game_piece(game_piece, position)
-        return
+        
+    return
 
 
 def check_win():
     return
 
 
+"""
 def check_rows():
-    return
+     return
 
 
 def check_cols():
@@ -58,13 +73,8 @@ def check_tie():
 
 def flip_player():    
     return
+"""    
 
 
-def start_game():
-    """
-    Play a game of Tic Tac Toe
-    """
-    display_board(board)
-
-
-start_game()       
+insert_game_piece("x", 1)
+    
