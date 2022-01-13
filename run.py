@@ -9,6 +9,8 @@ def start_game():
     """
     display_board()
 
+    handle_turn()
+
 
 def display_board():
     """
@@ -20,7 +22,7 @@ def display_board():
 
 
 def handle_turn():
-    return
+    position = input("Choose a position, 1-9: ")
 
 
 def check_win():
