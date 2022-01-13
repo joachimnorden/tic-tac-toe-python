@@ -3,7 +3,7 @@ board = ["X", "-", "-",
          "-", "-", "-"]
 
 
-def display_board():
+def display_board(board):
     """
     Display the board to screen
     """
@@ -13,17 +13,27 @@ def display_board():
 
 
 def check_space(position):
+    """
+    Check if the space of the position is free
+    and return either True or False
+    """
     if(board[position] == "-"):
         return True
     else:
         return False
 
 
-print(check_space(0))
-
-
-def handle_turn():
-    return
+def insert_game_piece(game_piece,position):
+    
+    if check_space(position):
+        board[position] = game_piece
+        display_board(board)
+    
+    else:
+        print("Can't insert there...")
+        position = input("Enter new position: ")
+        insert_game_piece(game_piece, position)
+        return
 
 
 def check_win():
@@ -54,9 +64,7 @@ def start_game():
     """
     Play a game of Tic Tac Toe
     """
-    display_board()
-
-    handle_turn()
+    display_board(board)
 
 
 start_game()       
