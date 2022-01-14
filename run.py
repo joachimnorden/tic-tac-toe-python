@@ -58,6 +58,8 @@ def insert_game_piece(game_piece, position):
     and check if any player has won.
     If not return another input.
     """
+    position = int(position) - 1
+
     if check_space(position):
         board[position] = game_piece
         display_board(board)
