@@ -23,19 +23,26 @@ def check_space(position):
         return False
 
 
-def check_win(game_piece, position):
+def check_win():
     # All possible winning combinations
-    soln = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], 
-            [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
- 
-    # Loop to check if any winning combination is satisfied
-    for x in soln:
-        if all(y in position[game_piece] for y in x):
- 
-            # Return True if any winning combination satisfies
-            return True
-    # Return False if no combination is satisfied       
-    return False       
+    if (board[0] == board[1] and board[0] == board[2] and board[0] != '-'):
+        return True
+    elif (board[3] == board[4] and board[3] == board[5] and board[2] != '-'):
+        return True
+    elif (board[6] == board[7] and board[6] == board[8] and board[6] != '-'):
+        return True
+    elif (board[0] == board[3] and board[0] == board[6] and board[0] != '-'):
+        return True
+    elif (board[1] == board[4] and board[1] == board[7] and board[1] != '-'):
+        return True
+    elif (board[2] == board[5] and board[2] == board[8] and board[2] != '-'):
+        return True
+    elif (board[0] == board[4] and board[0] == board[8] and board[0] != '-'):
+        return True
+    elif (board[6] == board[4] and board[6] == board[2] and board[6] != '-'):
+        return True
+    else:
+        return False
  
 
 # Function to check if the game is drawn
@@ -55,7 +62,7 @@ def insert_game_piece(game_piece, position):
         board[position] = game_piece
         display_board(board)
 
-        if check_win(game_piece, position):
+        if check_win():
             if game_piece == "X":
                 print("Player 1 wins!")
                 exit()
