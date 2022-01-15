@@ -1,15 +1,15 @@
-board = ["-", "-", "-", 
-         "-", "-", "-",
-         "-", "-", "-"]
+board = {1: "-", 2: "-", 3: "-", 
+         4: "-", 5: "-", 6: "-",
+         7: "-", 8: "-", 9: "-"}
 
 
 def display_board(board):
     """
     Display the board to screen
     """
-    print(board[0] + " | " + board[1] + " | " + board[2])
-    print(board[3] + " | " + board[4] + " | " + board[5])
-    print(board[6] + " | " + board[7] + " | " + board[8])
+    print(board[1] + " | " + board[2] + " | " + board[3])
+    print(board[4] + " | " + board[5] + " | " + board[6])
+    print(board[7] + " | " + board[8] + " | " + board[9])
 
 
 def check_space(position):
@@ -48,7 +48,7 @@ def check_win():
 # Function to check if the game is drawn
 def check_draw():
     for key in board.keys():
-        if board[key] == "-"
+        if board[key] == "-":
             return False
     
     return True
@@ -65,6 +65,10 @@ def insert_game_piece(game_piece, position):
     if check_space(position):
         board[position] = game_piece
         display_board(board)
+
+        if check_draw():
+            print("Draw!")
+            exit()
 
         if check_win():
             if game_piece == "X":
