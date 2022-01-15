@@ -25,21 +25,21 @@ def check_space(position):
 
 def check_win():
     # All possible winning combinations
-    if (board[0] == board[1] and board[0] == board[2] and board[0] != "-"):
+    if (board[1] == board[2] and board[1] == board[3] and board[1] != ' '):
         return True
-    elif (board[3] == board[4] and board[3] == board[5] and board[2] != "-"):
+    elif (board[4] == board[5] and board[4] == board[6] and board[4] != ' '):
         return True
-    elif (board[6] == board[7] and board[6] == board[8] and board[6] != "-"):
+    elif (board[7] == board[8] and board[7] == board[9] and board[7] != ' '):
         return True
-    elif (board[0] == board[3] and board[0] == board[6] and board[0] != "-"):
+    elif (board[1] == board[4] and board[1] == board[7] and board[1] != ' '):
         return True
-    elif (board[1] == board[4] and board[1] == board[7] and board[1] != "-"):
+    elif (board[2] == board[5] and board[2] == board[8] and board[2] != ' '):
         return True
-    elif (board[2] == board[5] and board[2] == board[8] and board[2] != "-"):
+    elif (board[3] == board[6] and board[3] == board[9] and board[3] != ' '):
         return True
-    elif (board[0] == board[4] and board[0] == board[8] and board[0] != "-"):
+    elif (board[1] == board[5] and board[1] == board[9] and board[1] != ' '):
         return True
-    elif (board[6] == board[4] and board[6] == board[2] and board[6] != "-"):
+    elif (board[7] == board[5] and board[7] == board[3] and board[7] != ' '):
         return True
     else:
         return False
@@ -60,8 +60,6 @@ def insert_game_piece(game_piece, position):
     and check if any player has won.
     If not return another input.
     """
-    position = int(position) - 1
-
     if check_space(position):
         board[position] = game_piece
         display_board(board)
@@ -77,6 +75,8 @@ def insert_game_piece(game_piece, position):
             else:
                 print("Player 2 wins!")
                 exit()
+        
+        return
     
     else:
         print("Can't insert there...")
@@ -86,27 +86,20 @@ def insert_game_piece(game_piece, position):
     return
 
 
-"""
-def check_rows():
-     return
-
-
-def check_cols():
+def make_move_0():
+    position = int(input("Enter a position for 'player 1': "))
+    insert_game_piece(player1, position)
     return
 
 
-def check_diagonal():
+def make_move_X():
+    position = int(input("Enter a position for 'player 2': "))
+    insert_game_piece(player2, position)
     return
 
 
-def check_tie():
-    return
+player1 = "0"
+player2 = "X"
 
-
-def flip_player():    
-    return
-"""    
-
-
-insert_game_piece("x", 1)
-insert_game_piece("x", 1)   
+print(check_draw())
+insert_game_piece("X", 1) 
