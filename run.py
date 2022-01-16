@@ -1,6 +1,6 @@
 # ------ Global variables -------
 
-board = {1: "-", 2: "-", 3: "-", 
+board = {1: "-", 2: "-", 3: "-",
          4: "-", 5: "-", 6: "-",
          7: "-", 8: "-", 9: "-"}
 
@@ -52,7 +52,7 @@ def handle_turn(player):
 
     insert_player(player, position)
 
-    
+
 def check_space(position):
     """
     Check if the space of the position is free
@@ -107,7 +107,7 @@ def check_win():
     else:
         return False
 
- 
+
 def check_draw():
     """
     Check if game is draw
@@ -115,7 +115,7 @@ def check_draw():
     for key in board.keys():
         if board[key] == "-":
             return False
-    
+
     return True
 
 
@@ -133,8 +133,9 @@ def flip_player():
         current_player = "X"
 
 
-print("You start! Good luck.")
-print("Positions are as follow:")
+print("This is a simple game of Tic-Tac-Toe")
+print("\n")
+print("Positions are as follows:")
 print("1, 2, 3 ")
 print("4, 5, 6 ")
 print("7, 8, 9 ")
