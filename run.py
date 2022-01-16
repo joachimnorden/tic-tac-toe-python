@@ -6,8 +6,6 @@ game_still_running = True
 
 current_player = "X"
 
-winner = None
-
 
 def play_game():
 
@@ -21,11 +19,15 @@ def play_game():
 
         flip_player()
 
-    if winner == "X" or winner == "O":
-        print(winner + " won.")
-    elif winner == None:
-        print("Tie.")
+    if check_draw():
+        print("It's a tie!")
 
+    if check_win(current_player):
+        if current_player == "X":
+            print(current_player, " has won!")
+        else:
+            print(current_player, "has won!")
+  
 
 def display_board(board):
     """
@@ -38,22 +40,20 @@ def display_board(board):
 
 
 def handle_turn(player):
+    print(player + " 's turn.")
+    position = int(input("Choose a position from 1 to 9: "))
 
     valid = False
 
-    try:
-        print(player + " 's turn.")
-        position = int(input("Choose a position from 1 to 9: "))
-    except ValueError:
-        Print("Wrong input! Try again")
-        position = int(input("Choose a position from 1 to 9: "))
+    while not valid:
+        if position < 1 or position > 9:
+            print("Wrong input! Choose a number from 1 - 9")
+            position = int(input("Choose a position from 1 to 9: "))
 
-    if postion < 1 or position > 9:
-        print("Wrong input! Choose a number from 1 - 9")
-        position = int(input("Choose a position from 1 to 9: "))
-
-    if board[position] != "-":
-
+        if board[position] == "-":
+            valid = True
+        else:
+            print("You can't go there. Go again")
 
     board[position] = player
 
@@ -62,7 +62,7 @@ def handle_turn(player):
 
 def check_if_game_over():
     check_draw()
-    check_win()    
+    check_win(current_player)    
 
 
 def check_space(position):
@@ -76,8 +76,10 @@ def check_space(position):
         return False
 
 
-def check_win():
-    # All possible winning combinations
+def check_win(current_player):
+    """
+    All possible winning combinations
+    """
     if (board[1] == board[2] and board[1] == board[3] and board[1] != "-"):
         return True
     elif (board[4] == board[5] and board[4] == board[6] and board[4] != "-"):
@@ -127,4 +129,3 @@ print("7, 8, 9 ")
 print("\n")
 
 play_game()
-exit()
