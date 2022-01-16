@@ -2,6 +2,21 @@ board = {1: "-", 2: "-", 3: "-",
          4: "-", 5: "-", 6: "-",
          7: "-", 8: "-", 9: "-"}
 
+game_still_running = True
+
+
+winner = None
+
+current_player = "X"
+
+def play_game():
+
+    display_board()
+
+    while game_still_running:
+
+        player_move()
+
 
 def display_board(board):
     """
@@ -10,6 +25,7 @@ def display_board(board):
     print(board[1] + " | " + board[2] + " | " + board[3])
     print(board[4] + " | " + board[5] + " | " + board[6])
     print(board[7] + " | " + board[8] + " | " + board[9])
+    print("\n")
 
 
 def check_space(position):
@@ -110,8 +126,11 @@ def check_draw():
 
 
 def player_move():
-    position = int(input("Enter a position for 'player 1': "))
-    insert_game_piece(player1, position)
+    """
+    Input for the player move
+    """
+    position = int(input("Enter a position: "))
+    insert_game_piece(player, position)
     return
 
 
@@ -119,7 +138,7 @@ def bot_move():
     best_score = -1000
     best_move = 0
 
-    for key board.key():
+    for key in board.keys():
         if board[key] == "-":
             board[key] = bot
             score = minimax(board, 0, False)
@@ -135,27 +154,48 @@ def bot_move():
 def minimax(board, depth, isMaximizing):
     if check_mark(bot):
         return 1
-
     elif check_mark(player):
         return -1
-
     elif check_draw():
         return 0
 
-    if isMaximizing:
-        best_score = -1000
+    if (isMaximizing):
+        bestScore = -800
+        for key in board.keys():
+            if (board[key] == ' '):
+                board[key] = bot
+                score = minimax(board, depth + 1, False)
+                board[key] = ' '
+                if (score > bestScore):
+                    bestScore = score
+        return bestScore
 
-        for key board.key():
-            if board[key] == "-":
-             board[key] = bot
-                score = minimax(board, 0, False)
-                board[key] = "-"
-                if score > best_score:
-                    best_score = score
+    else:
+        bestScore = 800
+        for key in board.keys():
+            if (board[key] == ' '):
+                board[key] = player
+                score = minimax(board, depth + 1, True)
+                board[key] = ' '
+                if (score < bestScore):
+                    bestScore = score
+        return bestScore
 
-        return best_score
+
+
+
+player = "X" 
+bot = "O"
+
+
+print("You start! Good luck.")
+print("Positions are as follow:")
+print("1, 2, 3 ")
+print("4, 5, 6 ")
+print("7, 8, 9 ")
+print("\n")
 
 
 while not check_win():
     player_move()
-    bot_move()()
+    bot_move()
