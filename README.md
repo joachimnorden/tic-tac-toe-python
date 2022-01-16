@@ -1,31 +1,189 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+<h1 align="center">Simple Tic-Tac-Toe</h1>
 
-Welcome joachimnorden,
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+[View the live project here.](https://simple-tic-tac-toe-game-joko.herokuapp.com/)
 
-## Reminders
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+This is a simple Python terminal Tic-Tac-Toe game, which runs in the Code Institute mock terminal on Heroku
 
-## Creating the Heroku app
+Tic-Tac-Toe is a game in which two players seek in alternate turns to complete a row, a column, or a diagonal with either three O's or three X's drawn in the spaces of a grid of nine squares; noughts and crosses. // Google
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
 
-1. `heroku/python`
-2. `heroku/nodejs`
+<h2 align="center"><img src="assets/images/tic-tac-toe-game-responsive-screens.png"></h2>
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+## How to play
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+- The first player will automatically be assigned "X" and starts the turn. Choose a number from 1 to 9. The turn then goes to player two who has been assigned "O". Repeat the same process.
 
-Connect your GitHub repository and deploy as normal.
 
-## Constraints
+## Features
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
 
------
-Happy coding!
+-   Automatically assigns you with a symbol, X or O.
+-   Accepts user input
+-   Input validaton and error-checking
+    -   You cannot enter numbers outside the size of the grid
+    -   You must enter numbers
+    -   You can not enter the same number twice in the same round
+
+<h2 align="center"><img src="assets/images/wrong-input.png"></h2>
+
+
+## Features to be added
+
+-   Scoreboard
+
+-   Play vs computer
+
+
+
+## Technologies Used
+
+
+### Languages Used
+
+
+-   [PYTHON](https://www.python.org/)
+
+
+### Frameworks, Libraries & Programs Used
+
+
+1. [Git](https://git-scm.com/)
+
+    - Git was used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub.
+
+2. [GitHub:](https://github.com/)
+
+    - GitHub is used to store the projects code after being pushed from Git.
+
+3. [Pythontutor](https://pythontutor.com/)
+
+    - Pythontutor helped me troughout and was a good tool to have when you got stuck.
+
+4. [Heroku](https://www.heroku.com/)
+
+    - Heroku was used to host the project.  
+
+## Testing
+
+
+The PEP8 Validator were used to validate the project to ensure there were no syntax errors.
+
+
+-   Python
+
+     - No errors were returned when passing through the PEP8 online validator
+
+
+### Testing
+
+
+-   Tested that no invalid or out of bounds inputs are accepted.
+
+-   Tested in my local terminal and the Code Institute Heroku terminal
+
+
+
+### Known Bugs
+
+
+-   Getting an error when entering two invalid inputs after each other.
+
+## Deployment
+
+
+### Heroku
+
+
+This project was deployed using Code Institute's mock terminal for Heroku.
+
+
+1. Fork or clone this Repository
+
+2. Create a new Heroku app
+
+3. Set the buildbacks to Python and NodeJS in that order
+
+4. Link the Heroku app to the repository
+
+5. Click on deploy
+
+
+### Forking the GitHub Repository
+
+
+By forking the GitHub Repository we make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original repository by using the following steps...
+
+
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/joachimnorden/A-text-based-game)
+
+2. At the top of the Repository (not top of page) just above the "Settings" Button on the menu, locate the "Fork" Button.
+
+3. You should now have a copy of the original repository in your GitHub account.
+
+
+### Making a Local Clone
+
+
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/joachimnorden/A-text-based-game)
+
+2. Under the repository name, click "Clone or download".
+
+3. To clone the repository using HTTPS, under "Clone with HTTPS", copy the link.
+
+4. Open Git Bash
+
+5. Change the current working directory to the location where you want the cloned directory to be made.
+
+6. Type `git clone`, and then paste the URL you copied in Step 3.
+
+
+```
+
+$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+
+```
+
+
+7. Press Enter. Your local clone will be created.
+
+
+```
+
+$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+
+> Cloning into `CI-Clone`...
+
+> remote: Counting objects: 10, done.
+
+> remote: Compressing objects: 100% (8/8), done.
+
+> remove: Total 10 (delta 1), reused 10 (delta 1)
+
+> Unpacking objects: 100% (10/10), done.
+
+```
+
+
+Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository#cloning-a-repository-to-github-desktop) to retrieve pictures for some of the buttons and more detailed explanations of the above process.
+
+
+## Credits
+
+
+### Code
+
+
+-   Got some inspiration by this article [askpython](https://www.askpython.com/python/examples/tic-tac-toe-using-python)
+
+-   The algorithm to check win and draw function was taken from this here: [YouTube](https://www.youtube.com/watch?v=JC1QsLOXp-I&ab_channel=JavaCodingCommunity-ProgrammingTutorials)
+
+
+
+### Acknowledgements
+
+
+-   My Partner for supporting me.
+
+-   Tutor support at Code Institute for their support.

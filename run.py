@@ -39,8 +39,12 @@ def handle_turn(player):
     Get position from player and makes sure
     it's a valid input and spot is open
     """
-    print(player + " 's turn.")
-    position = int(input("Choose a position from 1 to 9: "))
+    try:
+        print(player + " 's turn.")
+        position = int(input("Choose a position from 1 to 9: "))
+    except ValueError:
+        print("Input must be a number, try again")
+        position = int(input("Choose a position from 1 to 9: "))
 
     if position < 1 or position > 9:
         print("Wrong input! Choose a number from 1 - 9")
@@ -86,7 +90,8 @@ def insert_player(player, position):
 
 def check_win():
     """
-    All possible winning combinations
+    All possible winning combinations.
+    Algorithm from Java Coding Community - Programming Tutorials
     """
     if (board[1] == board[2] and board[1] == board[3] and board[1] != "-"):
         return True
