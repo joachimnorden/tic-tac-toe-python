@@ -23,37 +23,6 @@ def check_space(position):
         return False
 
 
-def check_win():
-    # All possible winning combinations
-    if (board[1] == board[2] and board[1] == board[3] and board[1] != ' '):
-        return True
-    elif (board[4] == board[5] and board[4] == board[6] and board[4] != ' '):
-        return True
-    elif (board[7] == board[8] and board[7] == board[9] and board[7] != ' '):
-        return True
-    elif (board[1] == board[4] and board[1] == board[7] and board[1] != ' '):
-        return True
-    elif (board[2] == board[5] and board[2] == board[8] and board[2] != ' '):
-        return True
-    elif (board[3] == board[6] and board[3] == board[9] and board[3] != ' '):
-        return True
-    elif (board[1] == board[5] and board[1] == board[9] and board[1] != ' '):
-        return True
-    elif (board[7] == board[5] and board[7] == board[3] and board[7] != ' '):
-        return True
-    else:
-        return False
- 
-
-# Function to check if the game is drawn
-def check_draw():
-    for key in board.keys():
-        if board[key] == "-":
-            return False
-    
-    return True
-
-
 def insert_game_piece(game_piece, position):
     """
     If the space is free add the game piece
@@ -82,22 +51,91 @@ def insert_game_piece(game_piece, position):
         print("Can't insert there...")
         position = int(input("Enter new position (1-9): "))
         insert_game_piece(game_piece, position)
-        
-    return
+        return
 
 
-def make_move_0():
+def check_win():
+    # All possible winning combinations
+    if (board[1] == board[2] and board[1] == board[3] and board[1] != "-"):
+        return True
+    elif (board[4] == board[5] and board[4] == board[6] and board[4] != "-"):
+        return True
+    elif (board[7] == board[8] and board[7] == board[9] and board[7] != "-"):
+        return True
+    elif (board[1] == board[4] and board[1] == board[7] and board[1] != "-"):
+        return True
+    elif (board[2] == board[5] and board[2] == board[8] and board[2] != "-"):
+        return True
+    elif (board[3] == board[6] and board[3] == board[9] and board[3] != "-"):
+        return True
+    elif (board[1] == board[5] and board[1] == board[9] and board[1] != "-"):
+        return True
+    elif (board[7] == board[5] and board[7] == board[3] and board[7] != "-"):
+        return True
+    else:
+        return False
+
+
+def check_mark(mark):
+    # All possible winning combinations
+    if (board[1] == board[2] and board[1] == board[3] and board[1] == mark):
+        return True
+    elif (board[4] == board[5] and board[4] == board[6] and board[4] == mark):
+        return True
+    elif (board[7] == board[8] and board[7] == board[9] and board[7] == mark):
+        return True
+    elif (board[1] == board[4] and board[1] == board[7] and board[1] == mark):
+        return True
+    elif (board[2] == board[5] and board[2] == board[8] and board[2] == mark):
+        return True
+    elif (board[3] == board[6] and board[3] == board[9] and board[3] == mark):
+        return True
+    elif (board[1] == board[5] and board[1] == board[9] and board[1] == mark):
+        return True
+    elif (board[7] == board[5] and board[7] == board[3] and board[7] == mark):
+        return True
+    else:
+        return False
+ 
+
+def check_draw():
+    """
+    Check if game is draw
+    """
+    for key in board.keys():
+        if board[key] == "-":
+            return False
+    
+    return True
+
+
+def player_move():
     position = int(input("Enter a position for 'player 1': "))
     insert_game_piece(player1, position)
     return
 
 
-def make_move_X():
-    position = int(input("Enter a position for 'player 2': "))
-    insert_game_piece(player2, position)
+def bot_move():
+    best_score = -1000
+    best_move = 0
+
+    for key board.key():
+        if board[key] == "-":
+            board[key] = bot
+            score = minimax(board, 0, False)
+            board[key] = "-"
+            if score > best_score:
+                best_score = score
+                best_move = key
+    
+    insert_game_piece(bot, best_move)
     return
 
 
+def minimax(board, depth, isMaximizing):
+
+
+
 while not check_win():
-    make_move_0()
-    make_move_X()
+    player_move()
+    bot_move()()
