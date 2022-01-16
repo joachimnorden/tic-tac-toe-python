@@ -133,7 +133,11 @@ def bot_move():
 
 
 def minimax(board, depth, isMaximizing):
+    if check_mark(bot):
+        return 1
 
+    elif check_mark(player):
+        return -1
 
 
 while not check_win():
