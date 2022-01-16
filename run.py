@@ -139,6 +139,22 @@ def minimax(board, depth, isMaximizing):
     elif check_mark(player):
         return -1
 
+    elif check_draw():
+        return 0
+
+    if isMaximizing:
+        best_score = -1000
+
+        for key board.key():
+            if board[key] == "-":
+             board[key] = bot
+                score = minimax(board, 0, False)
+                board[key] = "-"
+                if score > best_score:
+                    best_score = score
+
+        return best_score
+
 
 while not check_win():
     player_move()
