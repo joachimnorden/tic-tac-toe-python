@@ -1,3 +1,5 @@
+# ------ Global variables -------
+
 board = {1: "-", 2: "-", 3: "-", 
          4: "-", 5: "-", 6: "-",
          7: "-", 8: "-", 9: "-"}
@@ -7,7 +9,11 @@ game_still_running = True
 current_player = "X"
 
 
+# ------ Functions --------
 def play_game():
+    """
+    Starts the game by displaying the board
+    """
 
     display_board(board)
 
@@ -15,19 +21,8 @@ def play_game():
 
         handle_turn(current_player)
 
-        check_if_game_over()
-
         flip_player()
 
-    if check_draw():
-        print("It's a tie!")
-
-    if check_win(current_player):
-        if current_player == "X":
-            print(current_player, " has won!")
-        else:
-            print(current_player, "has won!")
-  
 
 def display_board(board):
     """
@@ -40,31 +35,24 @@ def display_board(board):
 
 
 def handle_turn(player):
+    """
+    Get position from player and makes sure
+    it's a valid input and spot is open
+    """
     print(player + " 's turn.")
     position = int(input("Choose a position from 1 to 9: "))
 
-    valid = False
+    if position < 1 or position > 9:
+        print("Wrong input! Choose a number from 1 - 9")
+        position = int(input("Choose a position from 1 to 9: "))
 
-    while not valid:
-        if position < 1 or position > 9:
-            print("Wrong input! Choose a number from 1 - 9")
-            position = int(input("Choose a position from 1 to 9: "))
+    if board[position] != "-":
+        print("You can't go there. Go again")
+        position = int(input("Choose a position from 1 to 9: "))
 
-        if board[position] == "-":
-            valid = True
-        else:
-            print("You can't go there. Go again")
+    insert_player(player, position)
 
-    board[position] = player
-
-    display_board(board)
-
-
-def check_if_game_over():
-    check_draw()
-    check_win(current_player)    
-
-
+    
 def check_space(position):
     """
     Check if the space of the position is free
@@ -76,7 +64,27 @@ def check_space(position):
         return False
 
 
-def check_win(current_player):
+def insert_player(player, position):
+    """
+    Adds the player to the board and checks if we have
+    a winner or if it's a tie
+    """
+    if check_space(position):
+        board[position] = player
+        display_board(board)
+        if check_draw():
+            print("It's a tie!")
+            exit()
+        if check_win():
+            if player == "X":
+                print("X wins!")
+                exit()
+            else:
+                print("O wins!")
+                exit()
+
+
+def check_win():
     """
     All possible winning combinations
     """
@@ -112,6 +120,10 @@ def check_draw():
 
 
 def flip_player():
+    """
+    Flips the current player from X to 0 and
+    other way around.
+    """
     global current_player
 
     if current_player == "X":
