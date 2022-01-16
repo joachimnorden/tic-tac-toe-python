@@ -6,7 +6,12 @@ game_still_running = True
 
 current_player = "X"
 
+winner = None
+
+
 def play_game():
+
+    display_board(board)
 
     while game_still_running:
 
@@ -14,6 +19,12 @@ def play_game():
 
         check_if_game_over()
 
+        flip_player()
+
+    if winner == "X" or winner == "O":
+        print(winner + " won.")
+    elif winner == None:
+        print("Tie.")
 
 
 def display_board(board):
@@ -26,6 +37,34 @@ def display_board(board):
     print("\n")
 
 
+def handle_turn(player):
+
+    valid = False
+
+    try:
+        print(player + " 's turn.")
+        position = int(input("Choose a position from 1 to 9: "))
+    except ValueError:
+        Print("Wrong input! Try again")
+        position = int(input("Choose a position from 1 to 9: "))
+
+    if postion < 1 or position > 9:
+        print("Wrong input! Choose a number from 1 - 9")
+        position = int(input("Choose a position from 1 to 9: "))
+
+    if board[position] != "-":
+
+
+    board[position] = player
+
+    display_board(board)
+
+
+def check_if_game_over():
+    check_draw()
+    check_win()    
+
+
 def check_space(position):
     """
     Check if the space of the position is free
@@ -35,37 +74,6 @@ def check_space(position):
         return True
     else:
         return False
-
-
-def insert_game_piece(game_piece, position):
-    """
-    If the space is free add the game piece
-    and check if any player has won.
-    If not return another input.
-    """
-    if check_space(position):
-        board[position] = game_piece
-        display_board(board)
-
-        if check_draw():
-            print("Draw!")
-            exit()
-
-        if check_win():
-            if game_piece == "X":
-                print("Player 1 wins!")
-                exit()
-            else:
-                print("Player 2 wins!")
-                exit()
-        
-        return
-    
-    else:
-        print("Can't insert there...")
-        position = int(input("Enter new position (1-9): "))
-        insert_game_piece(game_piece, position)
-        return
 
 
 def check_win():
@@ -90,7 +98,6 @@ def check_win():
         return False
 
  
-
 def check_draw():
     """
     Check if game is draw
@@ -100,15 +107,6 @@ def check_draw():
             return False
     
     return True
-
-
-def player_move():
-    """
-    Input for the player move
-    """
-    position = int(input("Enter a position: "))
-    insert_game_piece(player, position)
-    return
 
 
 def flip_player():
@@ -129,3 +127,4 @@ print("7, 8, 9 ")
 print("\n")
 
 play_game()
+exit()
